@@ -36,4 +36,32 @@ VALUES('Blossom', date '1998-10-13',3,true,17);
 INSERT INTO animals (name,date_of_birth,escape_attempts,neutered,weight_kg)
 VALUES('Ditto', date '2022-05-14',4,true,22);
 
+-- Insert the following data into the owners table
+
+INSERT INTO owners (full_name,age)
+VALUES('Sam Smith', 34);
+
+INSERT INTO owners (full_name,age)
+VALUES('Jenefer Orwell', 19);
+
+INSERT INTO owners (full_name,age)
+VALUES('Bob', 45);
+
+INSERT INTO owners (full_name,age)
+VALUES('Melod Pond', 77);
+
+INSERT INTO owners (full_name,age)
+VALUES('Dean Winchester', 14);
+
+INSERT INTO owners (full_name,age)
+VALUES('Jodie Whittaker', 38);
+
+-- Insert into species yable
+
+INSERT INTO species (name)
+VALUES('Pokemon');
+
+INSERT INTO species (name)
+VALUES('Digmon');
+
 

@@ -94,3 +94,47 @@ SELECT MAX (weight_kg) ,  Min (weight_kg)  FROM animals;
 -- What is the average number of escape attempts per animal type of those born between 1990 and 2000?
 SELECT AVG(escape_attempts) FROM animals WHERE  date_of_birth BETWEEN '01-01-1990' AND '01-01-2000';
 
+-- Modify your inserted animals so it includes the species_id value:
+    -- If the name ends in "mon" it will be Digimon
+UPDATE animals SET species_id = 2 WHERE name LIKE '%mon';
+    -- All other animals are Pokemon
+UPDATE animals SET species_id = 1 WHERE species_id IS NULL;
+
+-- Modify your inserted animals to include owner information (owner_id)
+UPDATE animals SET owner_id = 1 WHERE name = 'Agumon';
+UPDATE animals SET owner_id = 2 WHERE name = 'Gabumon' OR name='Pikachu';
+UPDATE animals SET owner_id = 3 WHERE name = 'Devimon' OR name='Plantmon';
+UPDATE animals SET owner_id = 4 WHERE name = 'Charmander' OR name='Squirtle' OR name='Blossom';
+UPDATE animals SET owner_id = 5 WHERE name = 'Angemon' OR name=' Blossom';
+
+-- What animals belong to Melody Pond?
+SELECT * FROM owners 
+JOIN animals ON animals.owner_id = owners.id 
+WHERE owners.full_name = 'Melod Pond';
+
+-- List of all animals that are pokemon (their type is Pokemon).
+SELECT * FROM species 
+JOIN animals ON animals.species_id = species.id
+WHERE species.name ='Pokemon';
+
+-- List all owners and their animals, remember to include those that don't own any animal.
+SELECT * FROM owners 
+LEFT JOIN animals ON animals.owner_id = owners.id; 
+-- How many animals are there per species?
+SELECT COUNT(*) FROM species
+JOIN animals ON animals.species_id = species.id WHERE species.name='Pokemon'
+JOIN animals ON animals.species_id = species.id WHERE species.name='Digmon';
+-- List all Digimon owned by Jennifer Orwell.
+SELECT * FROM owners 
+JOIN animals ON animals.owner_id = owners.id
+JOIN species ON species.id = animals.species_id
+WHERE species.name ='Digmon' AND owners.full_name='Jenefer Orwell';
+-- List all animals owned by Dean Winchester that haven't tried to escape.
+SELECT * FROM owners 
+JOIN animals ON animals.owner_id = owners.id 
+WHERE owners.full_name = 'Dean Winchester' AND escape_attempts = 0;
+-- Who owns the most animals?
+SELECT owners.id,full_name, COUNT(*) FROM animals 
+JOIN owners ON animals.owner_id = owners.id  
+GROUP BY owners.id, owners.full_name 
+ORDER BY count DESC LIMIT 1;  
