@@ -3,6 +3,7 @@
 > Vet Clinic is a relational database to create the initial data structure for a vet clinic with table animals and information, insert some data into it, and query it.
 
 <img src="./drawSQL.png"/>
+
 ## Getting Started
 
 This repository includes files with plain SQL that can be used to recreate a database:
